@@ -1,6 +1,9 @@
 kagglehub
 ipkernel
 scikit-learn
+datasets
+transformers
+accelerate
 
 --extra-index-url https://download.pytorch.org/whl/cu118
 torch
