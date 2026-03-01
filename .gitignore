@@ -3,3 +3,4 @@
 /logs
 /rnn_logs
 /bert_runs
+*.safetensors
