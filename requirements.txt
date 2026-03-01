@@ -1,9 +1,12 @@
 kagglehub
-ipkernel
+ipykernel
 scikit-learn
 datasets
 transformers
 accelerate
+tiktoken
+sentencepiece 
+protobuf
 
 --extra-index-url https://download.pytorch.org/whl/cu118
 torch
