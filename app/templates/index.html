@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Импорт отзывов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+        }
+
+        form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        input[type='text'] {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .hint {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Загрузка отзывов по IMDb-ссылке</h1>
+
+    <form method='post' action='/import'>
+        <input
+            type='text'
+            name='imdb_url'
+            placeholder='https://www.imdb.com/title/tt0137523/'
+            required
+        >
+        <button type='submit'>Импортировать</button>
+    </form>
+
+    <p class='hint'>
+        Вставь ссылку на фильм IMDb. Приложение найдёт фильм в TMDB, загрузит доступные отзывы и сохранит их в PostgreSQL.
+    </p>
+</body>
+</html>

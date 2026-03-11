@@ -7,6 +7,12 @@ accelerate
 tiktoken
 sentencepiece 
 protobuf
+fastapi "uvicorn[standard]"
+jinja2
+python-dotenv
+python-multipart
+sqlalchemy
+psycopg2
 
 --extra-index-url https://download.pytorch.org/whl/cu118
 torch

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Результат импорта</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .stats {
+            margin: 20px 0;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+
+        .review {
+            border: 1px solid #ddd;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .meta {
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a class='button' href='/'>← Назад</a>
+
+    <h1>{{ movie.title }}</h1>
+
+    <div class='stats'>
+        <p><strong>IMDb ID:</strong> {{ movie.imdb_id }}</p>
+        <p><strong>TMDB ID:</strong> {{ movie.tmdb_id }}</p>
+        <p><strong>Новых отзывов сохранено:</strong> {{ created_count }}</p>
+        <p><strong>Всего отзывов в базе:</strong> {{ total_reviews }}</p>
+    </div>
+
+    {% for review in reviews %}
+        <div class='review'>
+            <div class='meta'>
+                <strong>Автор:</strong> {{ review.author or 'Unknown' }}
+                |
+                <strong>Username:</strong> {{ review.author_username or 'Unknown' }}
+                |
+                <strong>Rating:</strong> {{ review.rating if review.rating is not none else '—' }}
+            </div>
+            <div>
+                {{ review.content }}
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
