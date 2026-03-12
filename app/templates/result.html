@@ -17,6 +17,18 @@
             background: #f5f5f5;
         }
 
+        .model_stats {
+            margin: 20px 0;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+
+        .original_stats {
+            margin: 20px 0;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+
         .review {
             border: 1px solid #ddd;
             padding: 16px;
@@ -33,6 +45,20 @@
             margin-bottom: 20px;
             text-decoration: none;
         }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .bar {
+            height: 16px;
+        }
+
+        .value {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -43,23 +69,36 @@
     <div class='stats'>
         <p><strong>IMDb ID:</strong> {{ movie.imdb_id }}</p>
         <p><strong>TMDB ID:</strong> {{ movie.tmdb_id }}</p>
-        <p><strong>Новых отзывов сохранено:</strong> {{ created_count }}</p>
+        <p><strong>Новых релевантных отзывов сохранено:</strong> {{ created_count }}</p>
         <p><strong>Всего отзывов в базе:</strong> {{ total_reviews }}</p>
     </div>
 
-    {% for review in reviews %}
-        <div class='review'>
-            <div class='meta'>
-                <strong>Автор:</strong> {{ review.author or 'Unknown' }}
-                |
-                <strong>Username:</strong> {{ review.author_username or 'Unknown' }}
-                |
-                <strong>Rating:</strong> {{ review.rating if review.rating is not none else '—' }}
-            </div>
-            <div>
-                {{ review.content }}
-            </div>
+    <div class='model_stats'>
+        <p><strong>Количество позитивных и негативных отзывов по предсказаниям модели:</strong></p>
+
+        <div class='row'>
+            <div class='bar' style='width: 100em; background: green;'></div>
+            <div class='value'>100</div>
         </div>
-    {% endfor %}
+
+        <div class='row'>
+            <div class='bar' style='width: 8em; background: red;'></div>
+            <div class='value'>8</div>
+        </div>
+    </div>
+
+    <div class='original_stats'>
+        <p><strong>Количество позитивных и негативных отзывов реально:</strong></p>
+
+        <div class='row'>
+            <div class='bar' style='width: {{ original_positive }}em; background: green;'></div>
+            <div class='value'>{{ original_positive }}</div>
+        </div>
+
+        <div class='row'>
+            <div class='bar' style='width: {{ original_negative }}em; background: red;'></div>
+            <div class='value'>{{ original_negative }}</div>
+        </div>
+    </div>
 </body>
 </html>
