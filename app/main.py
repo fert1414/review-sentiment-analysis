@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from app.db import Base, engine, get_db
 from app.models import Movie, Review
 from app.tmdb import extract_imdb_id, fetch_all_reviews, find_movie_by_imdb_id, parse_tmdb_datetime
-from app.status_checker import count_original_status
+from app.status_checker import count_original_status, count_model_status
 
 app = FastAPI(title='Review sentiment analysis')
 
@@ -67,7 +67,7 @@ async def import_reviews(
 
         if not rating:
             continue
-        
+
         review = Review(
             movie=movie,
             tmdb_review_id=tmdb_review_id,
@@ -87,6 +87,7 @@ async def import_reviews(
 
     saved_reviews = db.query(Review).filter(Review.movie_id == movie.id).all()
     original_positive, original_negative = count_original_status(saved_reviews)
+    model_positive, model_negative = count_model_status(saved_reviews)
 
     return templates.TemplateResponse(
         'result.html',
@@ -96,6 +97,8 @@ async def import_reviews(
             'created_count': created_count,
             'total_reviews': len(saved_reviews),
             'original_positive': original_positive,
-            'original_negative': original_negative
+            'original_negative': original_negative,
+            'model_positive': model_positive,
+            'model_negative': model_negative
         }
     )

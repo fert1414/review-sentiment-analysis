@@ -77,13 +77,13 @@
         <p><strong>Количество позитивных и негативных отзывов по предсказаниям модели:</strong></p>
 
         <div class='row'>
-            <div class='bar' style='width: 100em; background: green;'></div>
-            <div class='value'>100</div>
+            <div class='bar' style='width: {{ model_positive }}em; background: green;'></div>
+            <div class='value'>{{ model_positive }}</div>
         </div>
 
         <div class='row'>
-            <div class='bar' style='width: 8em; background: red;'></div>
-            <div class='value'>8</div>
+            <div class='bar' style='width: {{ model_negative }}em; background: red;'></div>
+            <div class='value'>{{ model_negative }}</div>
         </div>
     </div>
 
