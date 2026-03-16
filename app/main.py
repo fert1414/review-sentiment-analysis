@@ -65,7 +65,7 @@ async def import_reviews(
         author_details = item.get('author_details') or {}
         rating = author_details.get('rating')
 
-        if not rating:
+        if not rating or (rating > 4 and rating < 7):
             continue
 
         review = Review(

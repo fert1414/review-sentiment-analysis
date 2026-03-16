@@ -36,6 +36,9 @@ def count_model_status(reviews: list) -> int | int:
     for item in reviews:
         review_texts.append(item.content)
 
+    if not review_texts:
+        return 0, 0
+    
     inputs = tokenizer(
         review_texts,
         truncation=True,
